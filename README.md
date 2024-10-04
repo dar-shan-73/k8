@@ -6,10 +6,12 @@ How to learn kubernetes ?
 How to provision a kubernetes cluster ?
 
     1) Managing your cluster by using EC2 / On-Prem Instances 
-        a) Create instances 
+    
+        a) Create instances     ( t3.small or medium with 30gb )
         b) Install Run time     ( PodMan/Docker )
         c) Install Kubernetes  
-        d) Enroll the nodes 
+        d) Enroll the nodes  
+        e) kubectl              ( a k8 client to connect to the cluster )
     
     2) Using Managed Services From Cloud 
 
@@ -19,8 +21,11 @@ How to provision a kubernetes cluster ?
     
     3) Learning Environment : Minikube   ( We will start with this for the next 2 days )
 
-        a) Create an EC2 Instance 
-        b) Install Minukube On It
+        a) Create an EC2 Instance        ( t3.small or medium with 30gb and expand the /var and /root-vol directories )
+        b) Install Minukube On It 
+
+        `https://raw.githubusercontent.com/CodingManoj/rhel9-tools/refs/heads/main/Minikube/init.sh`
+        `https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download`
 
 Most of the information can be availed from `kubernetes.io`
 
@@ -31,3 +36,68 @@ How to connect to kubernets cluster ?
 What is `kubectl` ?
     
     kubectl is a kubernetes client to connect to the kubernetes cluster ( which is a CLI based tool )
+
+### In kubernetes, we have lot of resources and amound all Pod is the smallest computing resource!!!
+
+## What is a Pod in kubernetes ?
+```
+    Pods are the smallest deployable units of computing that you can create and manage in Kubernetes. A Pod (as in a pod of whales or pea pod) is a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers.
+```
+### Kubernetes is all about API's 
+
+Each and every resource would be under a specific api.
+
+### What is the purpose of pod ?
+
+```
+    POD is used to run a container, it's just a wrapper to containers.
+    
+    A pod can have more than one container.
+
+    But all the containers in the pod will have the sameNetwork & same storage.
+```
+
+
+All the commands in kubernetes starts with `kubectl`
+
+    Syntax: 
+
+        $ kubectl  verb  resources
+        $ kubectl  get pods 
+        $ kubectl  describe  resource 
+        $ kubectl cluster-info
+
+
+### Kubernetes Components 
+
+    Master / Control Plane Components: 
+
+        1) Kube-api server         ( 6643 )
+        2) Scheduler
+        3) Controller Manager 
+        4) etcd database 
+    
+    Worker / Data Plane Components: 
+
+        1) Kubelet                ( Run's on each and every node ) 
+        2) Container Runtime      ( Docker/PodMan )
+
+
+### What is kube contenxt file ?
+
+    1) This is a file that resides on your server under profile after you authenticate to the cluster ~/.kube/config 
+    2) This has the token / auth info to connect to the cluster 
+    3) This also has the option to tell on which cluster your commands are supposed to be executed ( current cluster )
+
+### How to create kubernetes resources ?
+
+    1) Either using imperative approach ( directly running the resource commands and it's not recommended as you cannot version control it )
+     ```
+        $ kubectl run NAME --image=image
+     ```
+    2) Declarative approach : Writing manifest files using YAML and then applying this, this is the most recommended way as we can version control it. 
+
+
+Bash Scripts 
+Playbooks 
+Manifests  (.yml / .yaml)
