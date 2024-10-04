@@ -97,7 +97,7 @@ All the commands in kubernetes starts with `kubectl`
      ```
     2) Declarative approach : Writing manifest files using YAML and then applying this, this is the most recommended way as we can version control it. 
 
-
-Bash Scripts 
-Playbooks 
-Manifests  (.yml / .yaml)
+    ```
+        $ kubectl create -f fileName.yml   ( This just creates and cannot be used with resources if they are in place : not recommended )
+        $ kubectl apply -f fileName.yml    ( This creates the resources mentioned in the manifest file if they are not in place, if they are already place, it updates the resources with the latest values that are mentioned in the yaml file. )  
+    ```
