@@ -157,3 +157,43 @@ All the commands in kubernetes starts with `kubectl`
         pod/kube-proxy-b4l7n                   1/1     Running   0             46m
         pod/kube-scheduler-minikube            1/1     Running   0             46m
         pod/storage-provisioner                1/1     Running   1 (45m ago)   46m
+
+### Kubernetes resources scope can either be nameSpace or cluster based  
+
+        # pods are namespace  
+        # node are cluster resources 
+
+### How to we know whether a resource scope is cluster or nameSpace ?
+
+        $ kubectl api-resources 
+
+```
+    NAME                                SHORTNAMES   APIVERSION                        NAMESPACED   KIND
+    bindings                                         v1                                true         Binding
+    componentstatuses                   cs           v1                                false        ComponentStatus
+    configmaps                          cm           v1                                true         ConfigMap
+    endpoints                           ep           v1                                true         Endpoints
+    events                              ev           v1                                true         Event
+    limitranges                         limits       v1                                true         LimitRange
+    namespaces                          ns           v1                                false        Namespace
+    nodes                               no           v1                                false        Node
+    persistentvolumeclaims              pvc          v1                                true         PersistentVolumeClaim
+    persistentvolumes                   pv           v1                                false        PersistentVolume
+    pods                                po           v1                                true         Pod
+    podtemplates                                     v1                                true         PodTemplate
+```
+
+### We don't create pods in kubernetes directlty ? Then how ? 
+    
+    We use SETS :
+
+    There are 4 types of sets and these sets will create the PODS in kubernetes ? Becuase of the advantages to maintain the replica count of the pods 
+
+        1) REPLICA SET          ( controller )
+        2) DEPLOYMENT SET       ( controller )
+        3) DAEMON SET           ( controller )
+        4) STATEFUL SET         ( controller )
+
+### Replica Set :
+    1) This will ensure the mentioned number of pods are running all the time 
+    2) Even if we / system deletes the pod, immediately the mentioned numbers of will  automatically be created. 
