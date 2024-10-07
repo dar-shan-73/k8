@@ -18,4 +18,4 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: docker.io/nginx:perl 
+        image: docker.io/nginx:otel
