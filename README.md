@@ -101,3 +101,20 @@ All the commands in kubernetes starts with `kubectl`
         $ kubectl create -f fileName.yml   ( This just creates and cannot be used with resources if they are in place : not recommended )
         $ kubectl apply -f fileName.yml    ( This creates the resources mentioned in the manifest file if they are not in place, if they are already place, it updates the resources with the latest values that are mentioned in the yaml file. )  
     ```
+
+
+## How to list the suppored resources in kubernetes 
+
+    $ kubectl api-resources  
+
+##  How to list the suppored api versions in kubernetes 
+
+    $ kubectl api-versions
+
+## How to see the clusetr info 
+
+    $ kubectl cluster-info 
+
+### How to start minikune 
+
+    $ minikube --force-start =
