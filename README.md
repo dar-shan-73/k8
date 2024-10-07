@@ -123,3 +123,37 @@ All the commands in kubernetes starts with `kubectl`
 
     $ kc get resourceType resourceName -o yaml 
 
+### How to validate manifest file without deploying to cluster 
+
+    $ kubectl apply -f manifest.yml  --dry-run=server   ( This tells whether resource is valid and can be deployed or not without really deploying) 
+
+    or 
+   
+    $ kubectl apply -f manifest.yml  --dry-run=client  ( This will only be validated by the client not by the api-server )
+
+### What is a namespace in kubernetes and what are it's default namespace, where our resources are going to be created by default ?
+
+    Namespaces in Kubernetes are a way to divide and manage resources in a cluster by creating isolated environments for different users or project.
+
+    Using, we can isolate the resources belongs to different and this is to make sure one team cannot access other team's resources.
+    We can also ensure, that one namespace can use only x cpu and y memory and can define these limits.
+
+### Kubernetes comes with three default namespaces: 
+    default: The default namespace for objects that don't have a specified namespace. This is the namespace that's referenced by default for every Kubernetes command. 
+
+    kube-system: Used for Kubernetes components, such as kube-dns, api-server, controller-managers, scheduler
+    kube-public: Used for public resources, such as information needed to communicate with the Kubernetes API. 
+
+### How to see all the resources of a specific namespace ?
+
+    $ kubectl get all -n nameSpaceName
+
+    $ kc get all -n kube-system
+        NAME                                   READY   STATUS    RESTARTS      AGE
+        pod/coredns-6f6b679f8f-w5cjz           1/1     Running   0             46m
+        pod/etcd-minikube                      1/1     Running   0             46m
+        pod/kube-apiserver-minikube            1/1     Running   0             46m
+        pod/kube-controller-manager-minikube   1/1     Running   0             46m
+        pod/kube-proxy-b4l7n                   1/1     Running   0             46m
+        pod/kube-scheduler-minikube            1/1     Running   0             46m
+        pod/storage-provisioner                1/1     Running   1 (45m ago)   46m

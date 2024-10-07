@@ -13,7 +13,6 @@ spec:
     command: ["sleep", "60"]          # This is how we supply the commands to be executed by the container
 
 ---
-
 apiVersion: v1
 kind: Pod
 metadata:
@@ -24,7 +23,6 @@ spec:
     image: nginx
 
 --- 
-
 apiVersion: v1
 kind: Pod
 metadata:
