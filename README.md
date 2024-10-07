@@ -115,6 +115,11 @@ All the commands in kubernetes starts with `kubectl`
 
     $ kubectl cluster-info 
 
-### How to start minikune 
+## How to start minikune 
 
-    $ minikube --force-start =
+    $ minikube --force-start
+
+## How to see the manifest of a deployed kubernetes resource 
+
+    $ kc get resourceType resourceName -o yaml 
+

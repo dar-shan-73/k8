@@ -10,4 +10,15 @@ spec:
     - containerPort: 80
   - name: debian 
     image: debian
-    command: ["sleep", "60"]
+    command: ["sleep", "60"]          # This is how we supply the commands to be executed by the container
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
