@@ -10,4 +10,4 @@ spec:
     - containerPort: 80
   - name: debian 
     image: debian
-    command: ["/bin/sh", "-c"]
+    command: ["sleep", "60"]
