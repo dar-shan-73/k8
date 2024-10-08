@@ -221,4 +221,22 @@ How bodning is happening between pods and replica-sets
         1) This ensure the mentioned number of replias are running all the time
         2) Deployment set helps in moving the pods from one version to another versions ( Old version pods will be deleted and new pods will be coming very fast )
         3) Deployment set again create a replica-set in the backend ( Behind the hoods )
-        
+
+    By default, deployment updates goes by deployment type of ROLLING UPDATE, which take down the old version by create new pods with the new version, we can also define the Rolling Update Percentage as well  ( zero to none downtime )
+
+    If you're not interested, we can also with Recreate Strategy In Deployment. Whenever a new version comes up, all the old versions will be deleted at a time and new one will be created  ( There would be some down time )
+
+
+### Statementful 
+
+    Stateful Set ensure all the created pods will be having a disk attached to it and at the same time this is mostly used to host the DB or storage based workloads. 
+
+    Pods created by ths stateful set will have a number associated with it. 
+
+    pod-0, pod-1, pod-2, pod-3
+
+    They will be created in the order and at the time , new pod of the set will only be coming up after the creation of the pod successfully.
+
+    Even if you scale down a stateful set with 5 pods, the first pod to be deleted is pod-4 
+
+    Very less number of times, we would scale down ( 99% of the times, we would never scale down ) 
