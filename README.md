@@ -206,3 +206,19 @@ All the commands in kubernetes starts with `kubectl`
 
 Labesl and selectors are very important, let's talk about that tomorrow.
 How bodning is happening between pods and replica-sets
+
+### How to scale a replicaset manually? 
+
+    ```
+        $ kubectl scale rs rsName --replicas=x 
+    
+    ```
+
+### Deployment Set 
+
+    Deployment Set is a wrapper to Replicaset 
+
+        1) This ensure the mentioned number of replias are running all the time
+        2) Deployment set helps in moving the pods from one version to another versions ( Old version pods will be deleted and new pods will be coming very fast )
+        3) Deployment set again create a replica-set in the backend ( Behind the hoods )
+        
