@@ -197,3 +197,9 @@ All the commands in kubernetes starts with `kubectl`
 ### Replica Set :
     1) This will ensure the mentioned number of pods are running all the time 
     2) Even if we / system deletes the pod, immediately the mentioned numbers of will  automatically be created. 
+    3) Using replica-set, we cannot update the pods from x to y version, replica-set will be configured but it's not going to impact the pods.  But the new pods that are going to be provisioned by this replica-set will have the image that's update.
+    4) We only use replica-set set just to make sure the comminted number of pods are running all the time or not.
+    5) If you want to support the version updating to the pods, then we need to use another type of SET called as deployment
+
+Labesl and selectors are very important, let's talk about that tomorrow.
+How bodning is happening between pods and replica-sets
