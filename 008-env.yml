@@ -13,3 +13,7 @@ spec:
       value: "The Most Honorable"
     - name: TOPIC
       value: "Kubernetes"
+    - name: Config
+      value: "map"
+    - name: SAMP
+      value: "debug"
