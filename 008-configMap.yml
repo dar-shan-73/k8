@@ -46,8 +46,7 @@ metadata:
 spec:
   containers:
     - name: app
-      command: ["/bin/sh", "-c", "printenv"]
-      image: busybox:latest
+      image: docker.io/nginx:latest
       envFrom:
         - configMapRef:
             name: game-demo
