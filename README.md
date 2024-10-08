@@ -201,5 +201,8 @@ All the commands in kubernetes starts with `kubectl`
     4) We only use replica-set set just to make sure the comminted number of pods are running all the time or not.
     5) If you want to support the version updating to the pods, then we need to use another type of SET called as deployment
 
+    !!! If you're dealing replica-set, you cannot let the version update of the image from one version to another verison.
+    If that's the case, we end-up using Deployment Sets.
+
 Labesl and selectors are very important, let's talk about that tomorrow.
 How bodning is happening between pods and replica-sets
