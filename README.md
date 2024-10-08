@@ -256,6 +256,8 @@ How bodning is happening between pods and replica-sets
 
 ### ConfigMap in kuberntes 
 
+        1) ConfigMap is a wrapper to hold a bunch fo environment varaibles that can be supplied like a packed entity to the pod.
+
 ### How to connect to these workloads ?
 
     1) Do pods have IP ?  Yes
