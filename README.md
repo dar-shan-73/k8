@@ -240,3 +240,16 @@ How bodning is happening between pods and replica-sets
     Even if you scale down a stateful set with 5 pods, the first pod to be deleted is pod-4 
 
     Very less number of times, we would scale down ( 99% of the times, we would never scale down ) 
+
+
+
+### What is Cloud Native ?
+
+    A product that is designed to work on cloud but is also capable to run on-prem but this yeilds all the promised features with ease when they are cloud. 
+
+    Ex: If you want to use stateful set: 
+
+        1) If you're on-prem, then we are responsible for provisioning the underlying storage disk for the statefulset
+        2) Using Persistent Volument and Persistent Volume Claim ( PV or PVC )
+    
+        3) If you're CLOUD, cloud provider offers STORAGE CLASS, this automatically provisions the underlying disk for the pods of the stateful set.
