@@ -253,3 +253,14 @@ How bodning is happening between pods and replica-sets
         2) Using Persistent Volument and Persistent Volume Claim ( PV or PVC )
     
         3) If you're CLOUD, cloud provider offers STORAGE CLASS, this automatically provisions the underlying disk for the pods of the stateful set.
+
+### ConfigMap in kuberntes 
+
+### How to connect to these workloads ?
+
+    1) Do pods have IP ?  Yes
+    2) Do containers with in the pods have IP Address ? No 
+    3) How to connect to them ? 
+
+
+### Services In Kubernetes   ( Tomorrow )
