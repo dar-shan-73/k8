@@ -272,3 +272,50 @@ How bodning is happening between pods and replica-sets
     4) External Name ( Alias for CNAME )
 
 If you don't mention the service type while creating the service, it default to clusterip ( which is a good option )
+
+
+Imp :
+    1) When we are tyring to connect to any service from any namespace, by default the k8 will look for the service the namespace from where we are making the call 
+
+        Ex: nginx-svc is in default nameSpace ,  exp-pod is in expense namespace .
+
+            Now if you want to make a call from expense-namespace to serfvice in other namespace, you need to call the service by using FQDN 
+
+
+            FQDN of svc:  svcName.nameSpace.svc.cluster.local
+                          
+                          nginx-svc.default.svc.cluster.local
+
+
+Response To a service in the same cluster but in other nameSpace:
+
+```
+root@exp-pod:/# curl nginx-svc
+    curl: (6) Could not resolve host: nginx-svc
+    
+root@exp-pod:/# curl nginx-svc.default.svc.cluster.local
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Welcome to nginx!</title>
+    <style>
+    html { color-scheme: light dark; }
+    body { width: 35em; margin: 0 auto;
+    font-family: Tahoma, Verdana, Arial, sans-serif; }
+    </style>
+    </head>
+    <body>
+    <h1>Welcome to nginx!</h1>
+    <p>If you see this page, the nginx web server is successfully installed and
+    working. Further configuration is required.</p>
+
+    <p>For online documentation and support please refer to
+    <a href="http://nginx.org/">nginx.org</a>.<br/>
+    Commercial support is available at
+    <a href="http://nginx.com/">nginx.com</a>.</p>
+
+    <p><em>Thank you for using nginx.</em></p>
+    </body>
+    </html>
+
+```
