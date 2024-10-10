@@ -265,4 +265,4 @@ How bodning is happening between pods and replica-sets
     3) How to connect to them ? 
 
 
-### Services In Kubernetes   ( Tomorrow )
+### Services In Kubernetes, Metrics Server   ( Tomorrow )
