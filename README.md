@@ -260,4 +260,15 @@ How bodning is happening between pods and replica-sets
     2) Do containers with in the pods have IP Address ? No 
     3) How to connect to them ? 
 
-### Services In Kubernetes, Metrics Server ( Tomorrow )
+### Services In Kubernetes, Metrics Server 
+
+    1) This is an abstract that helps in connecting to pods and this load balances the requests
+
+### Types of Services In Kubernetes 
+
+    1) Cluster IP            ( This type of service is only accessible with in the cluster )
+    2) Load Balancer         ( This is to expose something to the internet, typically any service that needs to be exposed to the internet )
+    3) Node Port             ( This is also something to allow access from the internet, but using the nodes pods)
+    4) External Name ( Alias for CNAME )
+
+If you don't mention the service type while creating the service, it default to clusterip ( which is a good option )

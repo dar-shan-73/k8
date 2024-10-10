@@ -1,4 +1,5 @@
 # This is like a schedule job and can be trigged as a batch; Whenever it meets the schedule it deploys a job that runs a pod with the mentioned configuration
+# As per the schedule, cronJob create a job ----> Job runs the pod ---> Goes to completed state
 apiVersion: batch/v1
 kind: CronJob
 metadata:
