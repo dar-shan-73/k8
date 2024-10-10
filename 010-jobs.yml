@@ -19,4 +19,6 @@ spec:
         image: perl:5.34.0
         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
       restartPolicy: Never
-  backoffLimit: 4
+  backoffLimit: 4              # During the job execution, if it fails how many times does this have to retry
+
+# Job ---> Creates a pod ---> Runs the task ---> Goes for completed state.
