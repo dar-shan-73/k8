@@ -213,7 +213,6 @@ How bodning is happening between pods and replica-sets
         $ kubectl scale rs rsName --replicas=x 
     
     ```
-
 ### Deployment Set 
 
     Deployment Set is a wrapper to Replicaset 
@@ -225,7 +224,6 @@ How bodning is happening between pods and replica-sets
     By default, deployment updates goes by deployment type of ROLLING UPDATE, which take down the old version by create new pods with the new version, we can also define the Rolling Update Percentage as well  ( zero to none downtime )
 
     If you're not interested, we can also with Recreate Strategy In Deployment. Whenever a new version comes up, all the old versions will be deleted at a time and new one will be created  ( There would be some down time )
-
 
 ### Statementful 
 
@@ -240,8 +238,6 @@ How bodning is happening between pods and replica-sets
     Even if you scale down a stateful set with 5 pods, the first pod to be deleted is pod-4 
 
     Very less number of times, we would scale down ( 99% of the times, we would never scale down ) 
-
-
 
 ### What is Cloud Native ?
 
@@ -264,5 +260,4 @@ How bodning is happening between pods and replica-sets
     2) Do containers with in the pods have IP Address ? No 
     3) How to connect to them ? 
 
-
-### Services In Kubernetes, Metrics Server   ( Tomorrow )
+### Services In Kubernetes, Metrics Server ( Tomorrow )
