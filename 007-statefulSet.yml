@@ -32,4 +32,6 @@ spec:
       storageClassName: "standard"
       resources:
         requests:
-          storage: 1Gi
+          storage: 3Gi  
+
+# creating a set ----> pods with a disk 
