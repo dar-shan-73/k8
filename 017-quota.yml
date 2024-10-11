@@ -1,3 +1,6 @@
+
+# When quotas are defined in a namespace, pods/deployments should have limits & requests defined. If not, resources won't be created
+
 apiVersion: v1
 kind: ResourceQuota
 metadata:
@@ -40,6 +43,29 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: debug-002
+  namespace: expense
+  labels:                      # Labels for the replicaSet
+    tier: frontend
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+--- 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-003
   namespace: expense
   labels:                      # Labels for the replicaSet
     tier: frontend
