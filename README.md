@@ -418,3 +418,5 @@ Resource quotas are a tool for administrators to address this concern.
 If creating or updating a resource violates a quota constraint, the request will fail with HTTP status code 403 FORBIDDEN with a message explaining the constraint that would have been violated.
 
 * When quotas are defined, pods/deployments should have limits & requests defined if not, it will not be deployed.
+
+    Ex: Error from server (Forbidden): error when creating "017-quota.yml": pods "debug-003" is forbidden: exceeded quota: quota-demo-cpu-mem-count, requested: pods=1, used: pods=2, limited: pods=2

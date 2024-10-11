@@ -61,7 +61,8 @@ spec:
         cpu: "500m"
 
 --- 
-
+# This will not be schedule as we would be reaching the limit
+# Error from server (Forbidden): error when creating "017-quota.yml": pods "debug-003" is forbidden: exceeded quota: quota-demo-cpu-mem-count, requested: pods=1, used: pods=2, limited: pods=2
 apiVersion: v1
 kind: Pod
 metadata:
