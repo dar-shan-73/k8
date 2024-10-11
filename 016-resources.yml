@@ -13,3 +13,22 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
+
+
+--- 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ext-pod
+spec:
+  containers:
+  - name: app
+    image: docker.io/nginx
+    resources:
+      requests:
+        memory: "6Gi"
+        cpu: "4"
+      limits:
+        memory: "8Gi"
+        cpu: "8"
