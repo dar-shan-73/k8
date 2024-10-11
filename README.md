@@ -420,3 +420,12 @@ If creating or updating a resource violates a quota constraint, the request will
 * When quotas are defined, pods/deployments should have limits & requests defined if not, it will not be deployed.
 
     Ex: Error from server (Forbidden): error when creating "017-quota.yml": pods "debug-003" is forbidden: exceeded quota: quota-demo-cpu-mem-count, requested: pods=1, used: pods=2, limited: pods=2
+
+
+## Probes ( Health Check In Kubernetes )
+
+    * Horizontal scaling means that the response to increased load is to deploy more Pods. This is different from vertical scaling, which for Kubernetes would mean assigning more resources (for example: memory or CPU) to the Pods that are already running for the workload.
+
+    * Horizontal pod autoscaling does not apply to objects that can't be scaled (for example: a DaemonSet.)
+
+    * We can scale the pods of the deployment either by CPU or MEMORY or by custom metric
