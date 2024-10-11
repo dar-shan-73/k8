@@ -387,6 +387,12 @@ A headless Service allows a client to connect to whichever Pod it prefers, direc
 
 ### Resource Management 
 
-    Requests 
+    Requests:
 
-    Limits
+    Limits:
+
+    Limits and Requests are at container level of the pod, if we have 3 containers in a pod, then we need to mention limits and reqeusts for both the containers.
+
+    IMP: Only REQUESTS are guaranteed, LIMITS are not guaranteed. 
+
+    
