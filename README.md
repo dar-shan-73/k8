@@ -371,3 +371,22 @@ Output Example:
         </html>
 
 ```
+
+### Headless Service In Kubernetes 
+    > This is majorly used when a cluster of DB's are in place.
+
+A headless Service allows a client to connect to whichever Pod it prefers, directly. Services that are headless don't configure routes and packet forwarding using virtual IP addresses and proxies; instead, headless Services report the endpoint IP addresses of the individual pods via internal DNS records, served through the cluster's DNS service.
+
+### How do we control what can be maximum resources ( CPU & Memory ) that can consumed by the containers with in the pod ?
+
+    How to define, what are te minimum CPU and Memory needed for the container in the pods to start ?
+        * If the minimum needed resourced mentioned in the pod are not available on the node, then that POD won't be schedule; Pending State 
+    
+    How to define, what are te maxium CPU and Memory needed for the container that it can use ?
+        * If we define the limits for the resources, whenever container reaches the limits in the pod, POD goes for a restart.
+
+### Resource Management 
+
+    Requests 
+
+    Limits
