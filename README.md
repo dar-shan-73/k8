@@ -396,3 +396,24 @@ A headless Service allows a client to connect to whichever Pod it prefers, direc
     IMP: Only REQUESTS are guaranteed, LIMITS are not guaranteed. 
 
     
+How to check the rource utilization of pods ?
+    
+How to check the rource utilization of nodes ? 
+
+For this, you need to install METRICS_SERVER!!! Then it collects the metrics and shows you.
+
+
+### Quotas in kubernetes!!!!
+
+    1) Deining limits saying that my namespace can have a maximum of 100 pods
+    2) Namespace-x can have a maximum of 16gb memory utilization 
+    3) A maximum of 100 secrets can be created in a namespace
+
+Quotas majorly comes up in a efficent and a shared cluster where namespaces are extensively used.
+
+When several users or teams share a cluster with a fixed number of nodes, there is a concern that one team could use more than its fair share of resources.
+
+Resource quotas are a tool for administrators to address this concern.
+
+If creating or updating a resource violates a quota constraint, the request will fail with HTTP status code 403 FORBIDDEN with a message explaining the constraint that would have been violated.
+
