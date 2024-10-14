@@ -47,7 +47,7 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSVPCResourceControlle
 
 # Provisions Node Group and attachs this to the eks 
 resource "aws_eks_node_group" "example" {
-  depends_on      = ["aws_eks_addon.example"] # CNI has to be enabled on the cluster first and then node-pool provisioning
+  depends_on      = [aws_eks_addon.example] # CNI has to be enabled on the cluster first and then node-pool provisioning
   cluster_name    = aws_eks_cluster.example.name
   node_group_name = "b58-eks-np-spot-0"
 
@@ -98,7 +98,7 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryRea
 
 # This enables the VPC-CNI 
 resource "aws_eks_addon" "example" {
-  depends_on   = ["aws_eks_cluster.example"]
+  depends_on   = [aws_eks_cluster.example]
   cluster_name = aws_eks_cluster.example.name
   addon_name   = "vpc-cni"
 }
