@@ -469,4 +469,26 @@ What are other networking solutions that are supported by Kubernetes ?
 
 Let's try to create EKS using Terraform :
 
+    $ bash create.sh 
+
+### How to connect to EKS Cluster ?
+
+    ```
+        aws eks update-kubeconfig --name clusterName 
+    ```
+
+### RBAC : Role Based Acccess Control ( This helps in achieving least privilege principle )
+
+Role-Based Access Control (RBAC) is a method of controlling access to Kubernetes resources based on the roles assigned to users or groups. 
+
+RBAC involves creating roles and binding them to users or groups to control access to Kubernetes resources. Roles are defined as a set of rules that determine what actions can be performed on specific resources. 
+
+By assigning roles to users or groups, access to Kubernetes resources can be restricted or granted based on the permissions defined in the role. 
+
+RBAC helps ensure the security and integrity of Kubernetes clusters by limiting access to authorized users and groups
+ 
+
+### How to get the Metrics or Saturation Info of the nodes and pods on ELS.
+
+To gain metrics level information on EKS, we need to have Metrics Server Installed and I would like to do it as a part of the cluster provisioning
 
