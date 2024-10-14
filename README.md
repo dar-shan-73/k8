@@ -492,3 +492,17 @@ RBAC helps ensure the security and integrity of Kubernetes clusters by limiting 
 
 To gain metrics level information on EKS, we need to have Metrics Server Installed and I would like to do it as a part of the cluster provisioning
 
+
+> What's next ? RBAC: role, role binding, service account, cluster-role, cluster-role-binding
+```
+    serviceaccount/metrics-server created
+    clusterrole.rbac.authorization.k8s.io/system:aggregated-metrics-reader created
+    clusterrole.rbac.authorization.k8s.io/system:metrics-server created
+    rolebinding.rbac.authorization.k8s.io/metrics-server-auth-reader created
+    clusterrolebinding.rbac.authorization.k8s.io/metrics-server:system:auth-delegator created
+    clusterrolebinding.rbac.authorization.k8s.io/system:metrics-server created
+    service/metrics-server created
+    deployment.apps/metrics-server created
+    apiservice.apiregistration.k8s.io/v1beta1.metrics.k8s.io created
+```
+
