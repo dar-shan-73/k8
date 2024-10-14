@@ -429,3 +429,44 @@ If creating or updating a resource violates a quota constraint, the request will
     * Horizontal pod autoscaling does not apply to objects that can't be scaled (for example: a DaemonSet.)
 
     * We can scale the pods of the deployment either by CPU or MEMORY or by custom metric
+
+### Managed Services For K8s on AWS :
+
+    * EKS: Elastic Kubernetes Service ( Very robust and heavy lifting service )
+
+    Advantage of using EKS:
+        1) AWS is responsible for managing the nodes 
+        2) You don't linux patching, you're not responsible for container run-time
+        3) You don't have to employ storage solution and you get out of the box HA storage solution
+        4) Very nice features can be installed as optional and we call them plug-ins. 
+
+# What will happen if your master node is gone/down in a kubernetes cluster ?
+
+    1) In managed environment, we won't be having access to MASTER NODE ( it's in AWS control )
+    2) If master node is down, you cannot schedule new work-loads and you cannot connect to the cluster ( Kube-api server, etcd , scheduler and controller manager are on master ) 
+    3) Existing workloads run as it (  but any of the pods of the deployment were killed then new pods of that controller won't come up )
+    4) You can have n number of node-groups to a single cluster.
+    5) You can have multi-master kuberntes cluster to achive ha in case of Master Node Failure.
+
+### How create Kubernetes Cluster ?
+
+    1) First create the cluster by selecting the version of our choice 
+    2) Create the node-pools / node-groups with the instance type of your choice and these nodes can be SPOT or RRSERVED or ON-DEMAND
+
+### In AWS, EKS offers 3 types of clusters wrt to conenctivity 
+
+    1) Public Cluster   [The cluster endpoint is accessible from outside of your VPC. Worker node traffic will leave your VPC to connect to the endpoint. ]
+    2) Public & Private [The cluster endpoint is accessible from outside of your VPC. Worker node traffic to the endpoint will stay within your VPC. ]
+    3) Private Cluster  [ The cluster endpoint is only accessible through your VPC. Worker node traffic to the endpoint will stay within your VPC. ]
+
+What is the networking solution offered on AWS ?
+    1) Amazon VPC CNI : is the networking solution that can be enabled to get pod and service level restrictions.
+
+What are other networking solutions that are supported by Kubernetes ?
+
+    1) Calico CNI 
+    2) Weavenet CNI 
+
+Let's try to create EKS using Terraform :
+
+
