@@ -561,3 +561,12 @@ Roles in kubernetes are of 2 types :
     1) Roles : scope is namespace: that you means you create at namespace and that's limited only to the namespace like pod, configmap, deployment 
     2) Cluster Role: scope is entire cluster: you can give access to create cluster roles, change cluster policies.
 
+
+### Where logs of the kubernetes cluster ar shipped ?
+
+    1) api-server, scheduler, controller logs cannbe shipped to a service in AWS Called as Cloud Watch 
+    2) By default you don't see them enabled, you need explicitly enable it. 
+    3) Once you enable it, you can view then Cloud Watch.
+
+Backlog:  Role binding is not happening  ( Cluster Role )
+The RoleBinding "nsreadonly-binding" is invalid: subjects[0].apiGroup: Unsupported value: "rbac.authorization.k8s.io": supported values: ""
