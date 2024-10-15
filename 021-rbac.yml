@@ -23,14 +23,13 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: nsreadonly
+  name: nsreadonly-binding
   namespace: default
-subjects:
-- kind: ServiceAccount
-  name: sample
-  namespace: default
-  apiGroup: rbac.authorization.k8s.io
 roleRef:
-  kind: Role 
-  name: ns-read-only
   apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: nsreadonly
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: ServiceAccount
+  name: sample
