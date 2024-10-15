@@ -34,4 +34,3 @@ roleRef:
   kind: Role 
   name: ns-read-only
   apiGroup: rbac.authorization.k8s.io
-  namespace: default
