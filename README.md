@@ -542,7 +542,7 @@ Service Account:
     Each and every sa will have token, if that's not available we can generate a token and associated
 
     ```
-        $ kubectl crate token sample
+        $ kubectl create token sample   ( creates token for the service account sample )
     ```
 
     Using the above token, we will connecto the cluster ( Let's create a user account on your linux machine )
@@ -561,4 +561,3 @@ Roles in kubernetes are of 2 types :
     1) Roles : scope is namespace: that you means you create at namespace and that's limited only to the namespace like pod, configmap, deployment 
     2) Cluster Role: scope is entire cluster: you can give access to create cluster roles, change cluster policies.
 
-    
