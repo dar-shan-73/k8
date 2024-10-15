@@ -45,7 +45,8 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSVPCResourceControlle
 }
 
 
-
-
-
-  
+# Defines the retention of the enabled logs on cloud watch
+resource "aws_cloudwatch_log_group" "example" {
+  name              = "b58-eks"
+  retention_in_days = 1
+}
