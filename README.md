@@ -534,3 +534,31 @@ Kubernetes uses authorization , not authentication ( userName & password )
 
 A service account in Kubernetes is a non-human identity that allows applications to run workloads in a Kubernetes cluster
 
+
+
+Service Account:
+    Just like how we use IAM Role to gain access to a non-human resource on AWS, similarly we use Service Account on K8's to let needed roles aligned to the k8 workloads.
+
+    Each and every sa will have token, if that's not available we can generate a token and associated
+
+    ```
+        $ kubectl crate token sample
+    ```
+
+    Using the above token, we will connecto the cluster ( Let's create a user account on your linux machine )
+
+    We are using a token generated on the system and using this we are attempting to connect to the cluster
+
+```
+    $ kc get nodes
+
+        Error from server (Forbidden): nodes is forbidden: User "system:serviceaccount:default:sample" cannot list resource "nodes" in API group "" at the cluster scope
+
+```
+
+Roles in kubernetes are of 2 types :
+
+    1) Roles : scope is namespace: that you means you create at namespace and that's limited only to the namespace like pod, configmap, deployment 
+    2) Cluster Role: scope is entire cluster: you can give access to create cluster roles, change cluster policies.
+
+    
