@@ -28,7 +28,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: nsreadonly
+  name: ns-read-only
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: ServiceAccount
