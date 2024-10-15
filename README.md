@@ -506,3 +506,31 @@ To gain metrics level information on EKS, we need to have Metrics Server Install
     apiservice.apiregistration.k8s.io/v1beta1.metrics.k8s.io created
 ```
 
+
+> IAM Role ---> Attaching Permissions ----> Attaching the role to the instance ---> Then instance will get all the needed permissions.
+
+
+### Role Based Access Control Good Practices ( RBAC )
+Principles and practices for good RBAC design for cluster operators.
+```
+    Kubernetes RBAC is a key security control to ensure that cluster users and workloads have only the access to resources required to execute their roles. It is important to ensure that, when designing permissions for cluster users, the cluster administrator understands the areas where privilege escalation could occur, to reduce the risk of excessive access leading to security incidents.
+
+```
+
+RBAC ensure you get roles that are needed on the cluster and for this ROLES are available in the cluster. 
+
+### What are the default roles that are available in the cluster ?
+
+Points to be notes :
+
+    1) Just like on linux how you create users and delegate permissions to them either directly or by groups, we can also do the same thing on kubermetes using k8 users and groups. 
+
+    2) You cal create your roles, perform binding ( adding user to the role ) 
+
+
+Kubernetes uses authorization , not authentication ( userName & password )
+
+    1) If we create a user, he don't present himself with userName and password, instead a token
+
+A service account in Kubernetes is a non-human identity that allows applications to run workloads in a Kubernetes cluster
+
