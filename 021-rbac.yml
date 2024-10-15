@@ -28,8 +28,10 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: sample
+  namespace: default
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role 
   name: ns-read-only
   apiGroup: rbac.authorization.k8s.io
+  namespace: default
