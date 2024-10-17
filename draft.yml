@@ -1,3 +1,4 @@
+# for network policies to work, you need to ensure that the enableNetworkPolicy: true has to be added on VPC-CNI,refer terraform addOn.tf
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -19,7 +20,6 @@ spec:
   containers:
     - name: nginx
       image: docker.io/nginx
-
 ---
 apiVersion: v1
 kind: Service
