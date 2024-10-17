@@ -1,18 +1,18 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: dmz
+  name: catalogue
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: mz
+  name: payment
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: nginx
-  namespace: dmz
+  namespace: catalogue
   labels:
     app: nginx
 spec:
@@ -25,7 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  namespace: mz
+  namespace: payment
   labels:
     app: nginx
 spec:
@@ -40,7 +40,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  namespace: dmz
+  namespace: catalogue
 spec:
   selector:
     app: nginx
@@ -53,7 +53,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: nginx
-  namespace: mz
+  namespace: payment
   labels:
     app: nginx
 spec:
@@ -70,35 +70,13 @@ spec:
   containers:
     - name: debug
       image: nginx:latest
----
-# apiVersion: networking.k8s.io/v1
-# kind: NetworkPolicy
-# metadata:
-#   name: allow-dmz
-#   namespace: mz
-# spec:
-#   podSelector:
-#     matchLabels:
-#       app: nginx
-#   policyTypes:
-#   - Ingress
-#   ingress:
-#   - from:
-#     - namespaceSelector:
-#         matchLabels:
-#           app: nginx
-#       podSelector:
-#         matchLabels:
-#           app: nginx
-#     ports:
-#     - protocol: TCP
-#       port: 80
+
 ---
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
   name: default-deny
-  namespace: mz
+  namespace: payment
 spec:
   podSelector:
     matchLabels: {}
