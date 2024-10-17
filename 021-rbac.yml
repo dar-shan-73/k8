@@ -4,9 +4,7 @@ kind: ServiceAccount
 metadata:
   name: expense 
 --- 
-
 # Create a role in default namespace
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -29,8 +27,8 @@ subjects:
 - kind: ServiceAccount
   namespace: default
   name: expense 
-  apiGroup: rbac.authorization.k8s.io 
+  # apiGroup: rbac.authorization.k8s.io
 roleRef:
-  apiGroup: rbac.authorization.k8s.io
+  # apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: ns-read-only
