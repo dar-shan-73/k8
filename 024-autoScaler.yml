@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: heavy-pod
+spec:
+  containers:
+  - name: app
+    image: docker.io/nginx
+    resources:
+      requests:
+        memory: "6000Mi"
+        cpu: "500mm"
+      limits:
+        memory: "8000Mi"
+        cpu: "800m"
