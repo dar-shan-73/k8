@@ -77,3 +77,16 @@ spec:
     - name: debug
       image: nginx:latest
 
+---
+# Network Policy to deny traffic coming in to payment namespace
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: default-deny
+  namespace: payment
+spec:
+  podSelector:
+    matchLabels: {}
+  policyTypes:
+    - Ingress
+    - Egress
