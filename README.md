@@ -570,3 +570,15 @@ Roles in kubernetes are of 2 types :
 
 Backlog:  Role binding is not happening  ( Cluster Role )
 The RoleBinding "nsreadonly-binding" is invalid: subjects[0].apiGroup: Unsupported value: "rbac.authorization.k8s.io": supported values: ""
+
+
+### VPA ( Vertical Pod AutoScaling )
+
+    1) This helps in adding respoures to the pod by taking down the pod that experiencing resource stress with a new pod with more resources
+    2) VPA always involves downtime 
+
+    Both HPA and VPA cannot be used for the same deployment.
+
+VPC Operates in 2 modes:
+    *   Manual Mode         ( Pods will be upsized and downsized automatically : but involves downtime )
+    *   Automatic Mode      ( When you enable in autoMode, you just get suggestions )
