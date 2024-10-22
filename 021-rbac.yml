@@ -16,7 +16,6 @@ rules:
   verbs: ["get", "list"]
 
 --- 
-
 # Role Bidning: Associating a role to either a user or service Account
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
