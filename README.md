@@ -582,3 +582,9 @@ The RoleBinding "nsreadonly-binding" is invalid: subjects[0].apiGroup: Unsupport
 VPC Operates in 2 modes:
     *   Manual Mode         ( Pods will be upsized and downsized automatically : but involves downtime )
     *   Automatic Mode      ( When you enable in autoMode, you just get suggestions )
+
+!!! You cannot work or run VPA's by default, you need to enable few options on the cluster, then only VPA will work.
+
+    Ref: https://www.kubecost.com/kubernetes-autoscaling/kubernetes-vpa/ 
+
+    VPA to work, we need to enable the Admission Controller for the VPA ( Above documentation instructs the same )
