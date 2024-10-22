@@ -588,3 +588,8 @@ VPC Operates in 2 modes:
     Ref: https://www.kubecost.com/kubernetes-autoscaling/kubernetes-vpa/ 
 
     VPA to work, we need to enable the Admission Controller for the VPA ( Above documentation instructs the same )
+
+### How EKS Cluster AutoScaling Works ?
+
+    1) Just like how pods HPA works, likewise with in the min & max values of the EKS Cluster Nodepool, the number of nodes would upsized and downsize automatically. 
+    2) What will happen if the pod that you're trying to scale is a big pod and current pod cannot accomodate ? ( Pod goes to pending state and that creates an event to add one more node in the cluster node pool )

@@ -11,7 +11,7 @@ resource "aws_eks_node_group" "example" {
 
   scaling_config {
     desired_size = 1 # when the cluster was provisioned this would be nodegroup node count
-    max_size     = 3 # Maximum number of nodes that the node-group can scale
+    max_size     = 4 # Maximum number of nodes that the node-group can scale
     min_size     = 1 # When the workloads are really less, this would be the number where nodegroup can scale down to.
   }
 }
