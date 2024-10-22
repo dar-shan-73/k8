@@ -29,7 +29,7 @@ metadata:
   namespace: catalogue
 spec:
   selector:
-    app: nginx
+    app: catalogue
   ports:
     - protocol: TCP
       port: 80
