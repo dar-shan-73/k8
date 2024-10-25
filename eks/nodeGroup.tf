@@ -14,6 +14,10 @@ resource "aws_eks_node_group" "example" {
     max_size     = 4 # Maximum number of nodes that the node-group can scale
     min_size     = 1 # When the workloads are really less, this would be the number where nodegroup can scale down to.
   }
+  tags = {
+    Environment = "Test"
+    project     = "expense"
+  }
 }
 
 #  IAM Role for EKS Node Group
