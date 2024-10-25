@@ -18,6 +18,12 @@ resource "aws_eks_node_group" "example" {
     Environment = "Test"
     project     = "expense"
   }
+
+  lifecycle {
+    ignore_changes = [
+      tags,
+    ]
+  }
 }
 
 #  IAM Role for EKS Node Group
