@@ -593,3 +593,49 @@ VPC Operates in 2 modes:
 
     1) Just like how pods HPA works, likewise with in the min & max values of the EKS Cluster Nodepool, the number of nodes would upsized and downsize automatically. 
     2) What will happen if the pod that you're trying to scale is a big pod and current pod cannot accomodate ? ( Pod goes to pending state and that creates an event to add one more node in the cluster node pool )
+
+    > Whenever pods go for unschedule state, autoScaler should create another node 
+    > We need to deploy auto-scaler and for this auto-scaler we need to attach the IAM Roles ( OIDC )
+
+
+### Scheduling 
+    > Scheduling would be done by scheduler on the control plane of kubernetes
+    > Scheduler by default schedules the pods on the nodes as per the availability.
+
+    > What if you don't want pods to be scheduled on a specfic or specific set of nodes. 
+    > What if I want my pods of deployment x and y should be deployed on the same node.
+    > What if my pods of deployment x and y should never ever be deployed on the same node.
+    > What if I want my pods should be deployed on the nodes at a balancer aspect per zone to keep the hig-availability.
+    > What if you've pods of important applications vs pods of low priority applications and would like to make sure, pods of high-priority should be taken in to consideration first.
+    > What if low-priority pods are already running and if you schedule high-priority jobs and if resources are not available to accomodate high-priority pods, low priority pods should be evicted from the node ? Pod Priority & Preemption comes up.
+
+Concepts: ( All the below topics are to make sure how and where scheduling should be done by the scheduler )
+
+    ```
+        1) Taints
+        2) Tolerations
+        3) Node Selectors
+        4) Pod affinity
+        5) Pod Antifnity 
+        6) Topology Constraints 
+        7) Pod Priority 
+        8) Preemptions 
+    ```
+
+    Use cases:
+
+        1) You've 3 types of nodes on the cluster that has SSD Disks, HDD Disks, Flash Drives
+
+    
+
+    How to see the labels of the nodes ?
+
+        ```
+            $ kc get nodes -o wide --show-labels
+        ```
+    
+    # How to label the nodes ?
+
+        ```
+            $ kubectl label nodes ip-172-31-39-2.ec2.internal  disktype=flashdriv
+        ```
