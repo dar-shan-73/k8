@@ -10,9 +10,9 @@ resource "aws_eks_node_group" "example" {
   capacity_type  = "SPOT"
 
   scaling_config {
-    desired_size = 1 # when the cluster was provisioned this would be nodegroup node count
+    desired_size = 2 # when the cluster was provisioned this would be nodegroup node count
     max_size     = 4 # Maximum number of nodes that the node-group can scale
-    min_size     = 1 # When the workloads are really less, this would be the number where nodegroup can scale down to.
+    min_size     = 2 # When the workloads are really less, this would be the number where nodegroup can scale down to.
   }
   tags = {
     Environment = "Test"
