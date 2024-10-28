@@ -1,0 +1,28 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taints-deployment
+  labels:
+    app: taints
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: taints
+  template:
+    metadata:
+      labels:
+        app: taints
+    spec:
+      containers:
+      - name: taints
+        image: docker.io/nginx:perl
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        disktype: flashdrive
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
