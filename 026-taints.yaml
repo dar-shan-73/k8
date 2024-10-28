@@ -27,7 +27,7 @@ spec:
 
 --- 
 ### Workload with toleration
-
+### The pods of this deployment can be scheduled on any of the nodes of the cluster that also has taints on the node with the effect NoSchedule ( app=expense )
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -49,6 +49,11 @@ spec:
         image: docker.io/nginx:perl
         ports:
         - containerPort: 80
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: expense
   strategy:
     type: RollingUpdate
     rollingUpdate:
