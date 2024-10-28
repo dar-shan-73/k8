@@ -659,4 +659,38 @@ How to taint a node ?
         $ kubectl taint nodes ip-172-31-31-19.ec2.internal app=expense:NoSchedule
 
         Workloads going forward cannot be scheduled on the top of this node.
-    ```
+    ``` 
+
+Whenever we are taking maintenance of the cluster ( Updating from one version to other verison.)
+
+    1.29.3 ( Majorverison.minorVersion.servicePack)
+
+    We can only upgrade from one minor version to other minor version ( 1.29.3 to 1.30.1 to 1.31.0 ) 
+    But we can move from one service pack to other service packge without any dependency 
+
+    In the maintenance window, typically first master will be upgraded and then worked nodes will be upgraded. 
+
+
+In the unmanaged/on-prem kubernetes cluster, if you wish to do maintenance on the node, then we first mark that node in maintenance using an option called as "cordon". Once you cordon the node, new workloads won't be scheduled on it and that turns to NotReady State.
+
+```
+$ kc get nodes -o wide
+NAME                           STATUS   ROLES    AGE     VERSION             INTERNAL-IP    EXTERNAL-IP       OS-IMAGE              KERNEL-VERSION                    
+ip-172-31-31-19.ec2.internal   Ready    <none>   58m   v1.31.0-eks-a737599   172.31.31.19   54.227.47.239   Amazon Linux    6.1.112-122.189.amzn2023.x86_64   
+ip-172-31-39-2.ec2.internal    Ready    <none>   58m   v1.31.0-eks-a737599   172.31.39.2    54.82.22.139    Amazon Linux    6.1.112-122.189.amzn2023.x86_64  
+
+$ kc cordon ip-172-31-39-2.ec2.internal
+NAME                           STATUS                     ROLES    AGE   VERSION               INTERNAL-IP    EXTERNAL-IP             OS-IMAGE                       
+ip-172-31-31-19.ec2.internal   Ready                      <none>   60m   v1.31.0-eks-a737599   172.31.31.19   54.227.47.239   Amazon Linux 2023.6.20241010   6.1.112-122.189.
+ip-172-31-39-2.ec2.internal    Ready,SchedulingDisabled   <none>   60m   v1.31.0-eks-a737599   172.31.39.2    54.82.22.139    Amazon Linux 2023.6.20241010   6.1.112-122.189.
+```
+
+1) First we cordon the nodes ( this disabled the scheduled , existing workloads will run as it )
+    $ kc cordon ip-172-31-39-2.ec2.internal
+2) Next is to drain the node ( existing workloads as per the graceful internal, they will run and will evicted and will be scheduled as per the expections on the other nodes )
+    $ kc drain ip-172-31-39-2.ec2.internal --grace-period=30
+3) Once maintenance is completed, we would uncordon the node 
+    $ kc uncordon ip-172-31-39-2.ec2.internal
+
+4) How to remove the taint on a node?   
+    $  kubectl taint nodes ip-172-31-31-19.ec2.internal app-  ( taint keyName- )

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: topololoy
+  labels:
+    app: topololoy
+spec:
+  topologySpreadConstraints:
+    - maxSkew: 1
+  replicas: 5
+  selector:
+    matchLabels:
+      app: topololoy
+  template:
+    metadata:
+      labels:
+        app: topololoy
+    spec:
+      containers:
+      - name: topololoy
+        image: docker.io/nginx:perl
+        ports:
+        - containerPort: 80
