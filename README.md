@@ -694,3 +694,5 @@ ip-172-31-39-2.ec2.internal    Ready,SchedulingDisabled   <none>   60m   v1.31.0
 
 4) How to remove the taint on a node?   
     $  kubectl taint nodes ip-172-31-31-19.ec2.internal app-  ( taint keyName- )
+
+Start from topology . . .
