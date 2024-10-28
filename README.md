@@ -639,3 +639,24 @@ Concepts: ( All the below topics are to make sure how and where scheduling shoul
         ```
             $ kubectl label nodes ip-172-31-39-2.ec2.internal  disktype=flashdriv
         ```
+
+Using nodeSelector, we can define the where to schedule the pods ?
+
+How can we make sure that pods should not be scheduled on the nodes of our choice ?
+
+Taints:
+    Taint is a feature that allows scheduler not to schedule pods on the node that has taints.
+    Only the pods that has tolerations to that taint can be allowed to be scheduled on the tained node 
+
+Taints can be operated in 3 modes:
+    1) NoExecute         : Pods that do not tolerate the taint are evicted immediately
+    2) NoSchedule        : No new Pods will be scheduled on the tainted node unless they have a matching toleration. Pods currently running on the node are not evicted. 
+    3) PreferNoSchedule : PreferNoSchedule is a "preference" or "soft" version of NoSchedule. The control plane will try to avoid placing a Pod that does not tolerate the taint on the node, but it is not guaranteed.
+
+How to taint a node ?
+
+    ```
+        $ kubectl taint nodes ip-172-31-31-19.ec2.internal app=expense:NoSchedule
+
+        Workloads going forward cannot be scheduled on the top of this node.
+    ```
