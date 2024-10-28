@@ -8,5 +8,3 @@ spec:
     image: nginx
     ports:
     - containerPort: 80
-  nodeSelector:
-    disktype: ssd
