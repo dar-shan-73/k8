@@ -173,7 +173,7 @@ resource "aws_eks_identity_provider_config" "oidc" {
   cluster_name = aws_eks_cluster.example.name
 
   oidc {
-    client_id                     = local.eks_client_id
+    client_id                     = "0A0D0750871AD0E848F90F4ECC6ACBFF"
     identity_provider_config_name = "iam-oidc"
     issuer_url                    = aws_eks_cluster.example.identity[0].oidc[0].issuer
     # issuer_url = "oidc.eks.us-east-1.amazonaws.com/id/0A0D0750871AD0E848F90F4ECC6ACBFF"
