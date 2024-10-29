@@ -178,3 +178,8 @@ resource "aws_eks_identity_provider_config" "oidc" {
     issuer_url                    = aws_iam_openid_connect_provider.default.url
   }
 }
+
+
+output "sample" {
+  value = aws_iam_openid_connect_provider.default
+}
