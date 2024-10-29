@@ -126,3 +126,40 @@ resource "aws_iam_openid_connect_provider" "default" {
 
   thumbprint_list = [data.external.myjson.result.thumbprint]
 }
+
+# Create IAM Role that can be federated by the k8 sa for assuming
+
+resource "aws_iam_role" "eks_cluster_autoscale" {
+  name = "eks_cluster_autoscale"
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  assume_role_policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Principal" : {
+          "Federated" : "arn:aws:iam::355449129696:oidc-provider/oidc.eks.region-code.amazonaws.com/id/0A0D0750871AD0E848F90F4ECC6ACBFF"
+        },
+        "Action" : "sts:AssumeRoleWithWebIdentity",
+        "Condition" : {
+          "StringEquals" : {
+            "oidc.eks.region-code.amazonaws.com/id/0A0D0750871AD0E848F90F4ECC6ACBFF:sub" : "system:serviceaccount:default:default",
+            "oidc.eks.region-code.amazonaws.com/id/0A0D0750871AD0E848F90F4ECC6ACBFF:aud" : "sts.amazonaws.com"
+          }
+        }
+      }
+    ]
+  })
+
+  tags = {
+    tag-key = "eks_cluster_autoscale"
+  }
+}
+
+# Atatching this IAM Role to IAM Policy cluster_autoscale (Giving  k8 SA access to IAM Role that has node launch privilege )
+resource "aws_iam_role_policy_attachment" "cluster_autoscaler" {
+  policy_arn = aws_iam_policy.cluster_autoscale.arn
+  role       = aws_iam_role.eks_cluster_autoscale.name
+}
