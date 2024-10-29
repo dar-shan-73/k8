@@ -738,3 +738,8 @@ spec:
     5) Be sure that this Pod spec also sets its labels to match this label selector if you want it to be counted properly in the future.
     6) A list of pod label keys to select which pods to calculate spreading over.
 ```
+
+### Pod Priority 
+
+Pods can have priority. Priority indicates the importance of a Pod relative to other Pods. If a Pod cannot be scheduled, the scheduler tries to preempt (evict) lower priority Pods to make scheduling of the pending Pod possible.
+

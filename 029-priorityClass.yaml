@@ -1,0 +1,31 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high
+value: 1000000
+globalDefault: false
+description: "This priority class should be used for hgih priority service pods only." 
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: high-imp
+  labels:
+    app: high-imp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: high-imp
+  template:
+    metadata:
+      labels:
+        app: high-imp
+    spec:
+      priorityClassName: high
+      containers:
+      - name: high-imp
+        image: docker.io/nginx:perl
+        ports:
