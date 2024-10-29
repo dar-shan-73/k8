@@ -695,4 +695,46 @@ ip-172-31-39-2.ec2.internal    Ready,SchedulingDisabled   <none>   60m   v1.31.0
 4) How to remove the taint on a node?   
     $  kubectl taint nodes ip-172-31-31-19.ec2.internal app-  ( taint keyName- )
 
-Start from topology . . .
+
+### Topology Constraint :
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  labels:
+    region: us-east
+spec:
+  securityContext:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  topologySpreadConstraints:
+  - maxSkew: 1 
+    topologyKey: topology.kubernetes.io/zone 
+    whenUnsatisfiable: DoNotSchedule 
+    labelSelector: 
+      matchLabels:
+        region: us-east 
+    matchLabelKeys:
+      - my-pod-label 
+  containers:
+  - image: "docker.io/ocpqe/hello-pod"
+    name: hello-pod
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: [ALL]
+```
+
+> Key Points: 
+
+```
+    1) The maximum difference in number of pods between any two topology domains. The default is 1, and you cannot specify a value of 0.
+    2) The key of a node label. Nodes with this key and identical value are considered to be in the same topology.
+    3) How to handle a pod if it does not satisfy the spread constraint. The default is DoNotSchedule, which tells the scheduler not to schedule the pod. Set to ScheduleAnyway to still schedule the pod, but the scheduler prioritizes honoring the skew to not make the cluster more imbalanced.
+    4) Pods that match this label selector are counted and recognized as a group when spreading to satisfy the constraint. Be sure to specify a label selector, otherwise no pods can be matched.
+    5) Be sure that this Pod spec also sets its labels to match this label selector if you want it to be counted properly in the future.
+    6) A list of pod label keys to select which pods to calculate spreading over.
+```
