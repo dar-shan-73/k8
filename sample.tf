@@ -4,5 +4,5 @@ data "external" "myjson" {
   ]
 }
 output "data" {
-  value = data.external.myjson
+  value = data.external.myjson.result.thumbprint
 }
