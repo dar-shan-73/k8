@@ -175,7 +175,7 @@ resource "aws_eks_identity_provider_config" "oidc" {
   oidc {
     client_id                     = local.eks_client_id
     identity_provider_config_name = "iam-oidc"
-    issuer_url                    = "https://${aws_iam_openid_connect_provider.default.url}"
+    issuer_url                    = aws_eks_cluster.example.identity[0].oidc[0].issuer
   }
 }
 
