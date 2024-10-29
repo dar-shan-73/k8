@@ -127,6 +127,17 @@ resource "aws_iam_openid_connect_provider" "default" {
   thumbprint_list = [data.external.myjson.result.thumbprint]
 }
 
+# 001 - assign the OIDC Provider to EKS
+resource "aws_eks_identity_provider_config" "oidc" {
+  cluster_name = aws_eks_cluster.example.name
+
+  oidc {
+    client_id                     = local.eks_client_id
+    identity_provider_config_name = "iam-oidc"
+    issuer_url                    = aws_eks_cluster.example.identity[0].oidc[0].issuer
+  }
+}
+
 # Create IAM Role that can be federated by the k8 sa for assuming
 
 resource "aws_iam_role" "eks_cluster_autoscale" {
@@ -167,18 +178,6 @@ resource "aws_iam_role_policy_attachment" "cluster_autoscaler" {
 locals {
   eks_client_id = element(tolist(split("/", tostring(aws_eks_cluster.example.identity[0].oidc[0].issuer))), 4)
 }
-
-# 001 - assign the OIDC Provider to EKS
-resource "aws_eks_identity_provider_config" "oidc" {
-  cluster_name = aws_eks_cluster.example.name
-
-  oidc {
-    client_id                     = local.eks_client_id
-    identity_provider_config_name = "iam-oidc"
-    issuer_url                    = aws_eks_cluster.example.identity[0].oidc[0].issuer
-  }
-}
-
 
 output "sample" {
   value = aws_eks_cluster.example.endpoint
