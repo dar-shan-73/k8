@@ -743,3 +743,36 @@ spec:
 
 Pods can have priority. Priority indicates the importance of a Pod relative to other Pods. If a Pod cannot be scheduled, the scheduler tries to preempt (evict) lower priority Pods to make scheduling of the pending Pod possible.
 
+
+### We can also define the kubelet configuration, to define when to evict the pods. 
+
+Sample Kubelte config to evict the pods from the nodes if it's left with 500Mb memory
+
+```
+    apiVersion: kubelet.config.k8s.io/v1beta1
+    kind: KubeletConfiguration
+    evictionHard:
+    memory.available: "500Mi"
+    evictionMinimumReclaim:
+    memory.available: "0Mi"
+
+```
+
+### Cluster Autoscaler:
+
+    1) Cluster Autoscaler listens to the node stress events and would be autoscaline the nodes in the node pool as per the max cap values
+    2) Cluster Autoscaler is a deployment that has to go to kube-system.
+    3) Pods of the Cluster AutoScaler Deployment should have the needed IAM Roles attached to launch the new nodes in the cluster.
+    4) We will also learn a concept in IAM called OIDC Provider 
+
+
+Goal: 
+    1) To launch k8 work load with with sevice account 
+    2) Create OIDC Provider on cluster 
+    3) Create IAM Role that has permissions to launch nodes in eks cluster nodepool 
+    4) Binding of IAM Role with K8-SA can be achieled by using the OIDC 
+    5) Then that k8 workload will get the needed roles to launch the nodes in the cluster.
+
+Tomorrow OIDC Integration.
+
+### Deploy Expense App On Kubernetes

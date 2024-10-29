@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "example" {
-  name                      = "b58-eks-test"
+  name                      = "b58-eks"
   role_arn                  = aws_iam_role.example.arn
   enabled_cluster_log_types = ["audit", "controllerManager"]
 

@@ -2,11 +2,11 @@
 resource "aws_eks_node_group" "example" {
   depends_on      = [aws_eks_addon.example] # CNI has to be enabled on the cluster first and then node-pool provisioning
   cluster_name    = aws_eks_cluster.example.name
-  node_group_name = "b58-eks-np-spot-test-0"
+  node_group_name = "b58-eks-np-spot-0"
 
   node_role_arn  = aws_iam_role.node-example.arn
   subnet_ids     = ["subnet-0d1a07bc7ceaf4694", "subnet-05a9dc77897b66c38", "subnet-08c53c78664626d0f"]
-  instance_types = ["t3.large"]
+  instance_types = ["t3.medium", "t3.large"]
   capacity_type  = "SPOT"
 
   scaling_config {
