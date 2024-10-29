@@ -50,3 +50,14 @@ resource "aws_cloudwatch_log_group" "logger" {
   name              = "/aws/eks/b58-eks/logger"
   retention_in_days = 1
 }
+
+
+# Extracting the info of thumbprint
+data "external" "myjson" {
+  program = [
+    "kubergrunt", "eks", "oidc-thumbprint", "--issuer-url", "${aws_eks_cluster.example.identity[0].oidc[0].issuer}"
+  ]
+}
+output "data" {
+  value = data.external.myjson.result.thumbprint
+}
