@@ -58,6 +58,6 @@ data "external" "myjson" {
     "kubergrunt", "eks", "oidc-thumbprint", "--issuer-url", "${aws_eks_cluster.example.identity[0].oidc[0].issuer}"
   ]
 }
-output "data" {
+output "dataa" {
   value = data.external.myjson.result.thumbprint
 }
