@@ -181,5 +181,5 @@ resource "aws_eks_identity_provider_config" "oidc" {
 
 
 output "sample" {
-  value = aws_eks_cluster.example
+  value = aws_eks_cluster.example.endpoint
 }
