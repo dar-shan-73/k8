@@ -15,7 +15,7 @@ metadata:
   labels:
     app: high-imp
 spec:
-  replicas: 3
+  replicas: 40
   selector:
     matchLabels:
       app: high-imp
@@ -48,7 +48,7 @@ metadata:
   labels:
     app: low-imp
 spec:
-  replicas: 3
+  replicas: 40
   selector:
     matchLabels:
       app: low-imp
