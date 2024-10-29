@@ -181,5 +181,5 @@ resource "aws_eks_identity_provider_config" "oidc" {
 
 
 output "sample" {
-  value = aws_iam_openid_connect_provider.default
+  value = aws_eks_cluster.example.identity[0].oidc[0].issuer
 }
