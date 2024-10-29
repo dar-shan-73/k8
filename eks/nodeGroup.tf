@@ -116,7 +116,7 @@ output "data" {
   value = data.external.myjson.result.thumbprint
 }
 
-# Creates OIDC Connector for EKS using the EKS OIDC Thumbprint
+# 000 - Creates OIDC Connector for EKS using the EKS OIDC Thumbprint
 resource "aws_iam_openid_connect_provider" "default" {
   url = aws_eks_cluster.example.identity[0].oidc[0].issuer
 
@@ -140,13 +140,13 @@ resource "aws_iam_role" "eks_cluster_autoscale" {
       {
         "Effect" : "Allow",
         "Principal" : {
-          "Federated" : "arn:aws:iam::355449129696:oidc-provider/oidc.eks.region-code.amazonaws.com/id/0A0D0750871AD0E848F90F4ECC6ACBFF"
+          "Federated" : "arn:aws:iam::355449129696:oidc-provider/oidc.eks.region-code.amazonaws.com/id/${local.eks_client_id}"
         },
         "Action" : "sts:AssumeRoleWithWebIdentity",
         "Condition" : {
           "StringEquals" : {
-            "oidc.eks.region-code.amazonaws.com/id/0A0D0750871AD0E848F90F4ECC6ACBFF:sub" : "system:serviceaccount:default:default",
-            "oidc.eks.region-code.amazonaws.com/id/0A0D0750871AD0E848F90F4ECC6ACBFF:aud" : "sts.amazonaws.com"
+            "oidc.eks.region-code.amazonaws.com/id/${local.eks_client_id}:sub" : "system:serviceaccount:default:default",
+            "oidc.eks.region-code.amazonaws.com/id/${local.eks_client_id}:aud" : "sts.amazonaws.com"
           }
         }
       }
@@ -162,4 +162,19 @@ resource "aws_iam_role" "eks_cluster_autoscale" {
 resource "aws_iam_role_policy_attachment" "cluster_autoscaler" {
   policy_arn = aws_iam_policy.cluster_autoscale.arn
   role       = aws_iam_role.eks_cluster_autoscale.name
+}
+
+locals {
+  eks_client_id = element(tolist(split("/", tostring(aws_eks_cluster.example.identity[0].oidc[0].issuer))), 4)
+}
+
+# 001 - assign the OIDC Provider to EKS
+resource "aws_eks_identity_provider_config" "example" {
+  cluster_name = aws_eks_cluster.example.name
+
+  oidc {
+    client_id                     = local.eks_client_id
+    identity_provider_config_name = "iam-oidc"
+    issuer_url                    = aws_eks_cluster.example.identity[0].oidc[0].issuer
+  }
 }
