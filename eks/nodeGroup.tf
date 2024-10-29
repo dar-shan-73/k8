@@ -56,3 +56,50 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryRea
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.node-example.name
 }
+
+
+
+
+
+
+### Crreating IAM Policy
+resource "aws_iam_policy" "cluster_autoscale" {
+  name        = "cluster_autoscale"
+  path        = "/"
+  description = "cluster_autoscale"
+
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeAutoScalingInstances",
+          "autoscaling:DescribeLaunchConfigurations",
+          "autoscaling:DescribeScalingActivities",
+          "ec2:DescribeImages",
+          "ec2:DescribeInstanceTypes",
+          "ec2:DescribeLaunchTemplateVersions",
+          "ec2:GetInstanceTypesFromInstanceRequirements",
+          "eks:DescribeNodegroup"
+        ],
+        "Resource" : ["*"]
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "autoscaling:SetDesiredCapacity",
+          "autoscaling:TerminateInstanceInAutoScalingGroup"
+        ],
+        "Resource" : ["*"]
+      }
+    ]
+  })
+}
+
+# attaching this policy to node-example role
+resource "aws_iam_role_policy_attachment" "cluster_autoscale" {
+  policy_arn = aws_iam_policy.cluster_autoscale.arn
+  role       = aws_iam_role.node-example.name
+}
