@@ -98,8 +98,31 @@ resource "aws_iam_policy" "cluster_autoscale" {
   })
 }
 
+
+#**************************************
 # attaching this policy to node-example role
 resource "aws_iam_role_policy_attachment" "cluster_autoscale" {
   policy_arn = aws_iam_policy.cluster_autoscale.arn
   role       = aws_iam_role.node-example.name
+}
+
+# Extracting the info of thumbprint
+data "external" "myjson" {
+  program = [
+    "kubergrunt", "eks", "oidc-thumbprint", "--issuer-url", "${aws_eks_cluster.example.identity[0].oidc[0].issuer}"
+  ]
+}
+output "data" {
+  value = data.external.myjson.result.thumbprint
+}
+
+# Creates OIDC Connector for EKS using the EKS OIDC Thumbprint
+resource "aws_iam_openid_connect_provider" "default" {
+  url = aws_eks_cluster.example.identity[0].oidc[0].issuer
+
+  client_id_list = [
+    "sts.amazonaws.com",
+  ]
+
+  thumbprint_list = [data.external.myjson.result.thumbprint]
 }
