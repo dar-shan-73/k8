@@ -28,4 +28,36 @@ spec:
       containers:
       - name: high-imp
         image: docker.io/nginx:perl
-        ports:
+
+--- 
+
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: low
+value: 100000
+globalDefault: false
+description: "This priority class should be used for low priority service pods only." 
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: low-imp
+  labels:
+    app: low-imp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: low-imp
+  template:
+    metadata:
+      labels:
+        app: low-imp
+    spec:
+      priorityClassName: low
+      containers:
+      - name: low-imp
+        image: docker.io/nginx:perl
