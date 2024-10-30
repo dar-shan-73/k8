@@ -26,6 +26,21 @@ resource "aws_eks_node_group" "example" {
   }
 }
 
+data "aws_iam_policy_document" "assume_role" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["eks.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+
+
 #  IAM Role for EKS Node Group
 resource "aws_iam_role" "node-example" {
   name = "eks-node-group-example"
@@ -40,6 +55,11 @@ resource "aws_iam_role" "node-example" {
     }]
     Version = "2012-10-17"
   })
+}
+
+resource "aws_iam_role" "example" {
+  name               = "eks-cluster-example"
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
 resource "aws_iam_role_policy_attachment" "example-AmazonEKSWorkerNodePolicy" {
