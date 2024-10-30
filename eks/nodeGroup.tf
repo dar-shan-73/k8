@@ -154,14 +154,16 @@ resource "aws_iam_role" "eks_cluster_autoscale" {
     "Statement" : [
       {
         "Effect" : "Allow",
+        "Action" : "sts:AssumeRoleWithWebIdentity",
         "Principal" : {
           "Federated" : "arn:aws:iam::355449129696:oidc-provider/oidc.eks.region-code.amazonaws.com/id/${local.eks_client_id}"
         },
-        "Action" : "sts:AssumeRoleWithWebIdentity",
+
         "Condition" : {
           "StringEquals" : {
-            "oidc.eks.region-code.amazonaws.com/id/${local.eks_client_id}:sub" : "system:serviceaccount:default:default",
-            "oidc.eks.region-code.amazonaws.com/id/${local.eks_client_id}:aud" : "sts.amazonaws.com"
+            "oidc.eks.region-code.amazonaws.com/id/${local.eks_client_id}:aud" : "sts.amazonaws.com",
+            "oidc.eks.region-code.amazonaws.com/id/${local.eks_client_id}:sub" : "system:serviceaccount:default:default"
+
           }
         }
       }
