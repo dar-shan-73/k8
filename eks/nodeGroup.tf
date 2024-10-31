@@ -6,13 +6,13 @@ resource "aws_eks_node_group" "example" {
 
   node_role_arn  = aws_iam_role.node-example.arn
   subnet_ids     = ["subnet-0d1a07bc7ceaf4694", "subnet-05a9dc77897b66c38", "subnet-08c53c78664626d0f"]
-  instance_types = ["t3.medium", "t3.large"]
+  instance_types = ["t3.medium"]
   capacity_type  = "SPOT"
 
   scaling_config {
-    desired_size = 2 # when the cluster was provisioned this would be nodegroup node count
-    max_size     = 4 # Maximum number of nodes that the node-group can scale
-    min_size     = 2 # When the workloads are really less, this would be the number where nodegroup can scale down to.
+    desired_size = 1 # when the cluster was provisioned this would be nodegroup node count
+    max_size     = 3 # Maximum number of nodes that the node-group can scale
+    min_size     = 1 # When the workloads are really less, this would be the number where nodegroup can scale down to.
   }
   tags = {
     Environment = "Test"
@@ -136,9 +136,9 @@ resource "aws_eks_identity_provider_config" "oidc" {
   cluster_name = aws_eks_cluster.example.name
 
   oidc {
-    client_id                     = "9e99a48a9960b14926bb7f3b02e22da2b0ab7280" #local.eks_client_id
+    client_id                     = local.eks_client_id
     identity_provider_config_name = "iam-oidc"
-    issuer_url                    = aws_eks_cluster.example.identity[0].oidc[0].issuer
+    issuer_url                    = aws_eks_cluster.example.endpoint
   }
 }
 
