@@ -802,4 +802,4 @@ templates/ :This folder holds the deployment, service, configmap template struct
 
 ### Helm Commands :
     $ helm create chart-name  ( Creates chart )
-    
+    $ helm install chartName ./chartLocation -f values.yaml   ( values.yaml )
