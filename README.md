@@ -776,3 +776,4 @@ Goal:
 Tomorrow OIDC Integration.
 
 ### Deploy Expense App On Kubernetes
+1) Expense app on k8s
