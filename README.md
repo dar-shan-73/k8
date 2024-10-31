@@ -777,3 +777,29 @@ Tomorrow OIDC Integration.
 
 ### Deploy Expense App On Kubernetes
 1) Expense app on k8s
+
+
+Helm Charts :
+1) Helm offers parameterizing the entire manifest
+2) Keep the code dry by eliminating the common patterns
+3) Also helps in dealing multiple environments with a single definition. 
+
+
+This is how a helm-chart looks like and name of the folder should be as defined.
+```
+    mychart/
+        Chart.yaml
+        values.yaml
+        charts/
+        templates/
+```
+
+chart.yaml : holds the metadata of the chart, like chartName, apiVersion, version of the chart,
+values.yaml: this is where you supply all the needed values and name of the values.yaml can you any file like dev.yaml, test.yaml, prod.yaml.
+charts/ : This folder holds sub charts or dependent charts or charts in charts 
+templates/ :This folder holds the deployment, service, configmap template structure
+
+
+### Helm Commands :
+    $ helm create chart-name  ( Creates chart )
+    
