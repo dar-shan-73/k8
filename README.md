@@ -806,3 +806,4 @@ templates/ :This folder holds the deployment, service, configmap template struct
       you cannot run the install command multiple times with the same name and if there are any change in the values, you to go by "helm update" 
     
     $ helm upgrade --install ./chartLocation -f values.yaml 
+    helm upgrade --install frontend  ./helm-charts/  -f helm-charts/frontend.yam
