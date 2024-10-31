@@ -803,3 +803,6 @@ templates/ :This folder holds the deployment, service, configmap template struct
 ### Helm Commands :
     $ helm create chart-name  ( Creates chart )
     $ helm install chartName ./chartLocation -f values.yaml   ( values.yaml )
+      you cannot run the install command multiple times with the same name and if there are any change in the values, you to go by "helm update" 
+    
+    $ helm upgrade --install ./chartLocation -f values.yaml 
