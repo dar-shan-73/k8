@@ -43,7 +43,7 @@ metadata:
 spec:
   containers:
   - name: backend
-    image: docker.io/sanraman/backend-frontend
+    image: docker.io/sanraman/expense-backend
     ports:
     - containerPort: 8080
 
