@@ -3,8 +3,8 @@ kind: Service
 metadata:
   name: {{ .Values.appName }}-svc
 spec:
-  # type: {{ .Values.service.type }}
-  type: ClusterIP
+  type: {{ .Values.service.type }}
+  # type: ClusterIP
   selector:
     tier: {{ .Values.appName }}
   ports:
