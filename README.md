@@ -816,3 +816,25 @@ ArgoCD:
     1) This is a CD Tool designed for kubernetes
     2) It has reconissance
     3) Reconsilation
+
+
+Why ArgoCD ?
+    1) This is the deployment tool for kubernetes 
+
+Where are you going to install it ?
+    1) On the kubernetes cluster ?
+
+What are the specialities of Argo CD ?
+    1) It offers UI, so that you don't have to deploy the helm charts usings CLI
+    2) It offers reconissance ( Continuous Monitoring: If there are changes on the helm charts on github, it immediately updates them on your cluster )
+    3) Reconsilation: If you made some changes manually on the deployment managed by argo, argocd controller immediately reverts and makes sure to apply git changes as source of truth.
+
+
+
+
+
+
+
+
+Backlog:
+1) MySQL should be on AWS Managed Service RDS
