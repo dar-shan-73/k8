@@ -8,3 +8,6 @@ service:
 replicas: 1
 
 env: {}     # emptyMap
+
+schemaLoader:
+  enabled: false 
