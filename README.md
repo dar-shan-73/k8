@@ -806,4 +806,13 @@ templates/ :This folder holds the deployment, service, configmap template struct
       you cannot run the install command multiple times with the same name and if there are any change in the values, you to go by "helm update" 
     
     $ helm upgrade --install ./chartLocation -f values.yaml 
-    helm upgrade --install frontend  ./helm-charts/  -f helm-charts/frontend.yam
+    helm upgrade --install frontend  ./helm-charts/  -f helm-charts/frontend.yam 
+
+What's next ?
+1) We will see some more advanced options in heml and will try to optimzie the charts using those options.
+2) Let's target deployments of helm using UI [ ArgoCD: Deployment Tools For K8's]
+
+ArgoCD: 
+    1) This is a CD Tool designed for kubernetes
+    2) It has reconissance
+    3) Reconsilation
