@@ -6,3 +6,5 @@ service:
   port: 80
 
 replicas: 1
+
+env: {}     # emptyMap

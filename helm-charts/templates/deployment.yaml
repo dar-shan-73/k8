@@ -30,5 +30,8 @@ spec:
       containers:
       - name: {{ .Values.appName }}
         image: docker.io/sanraman/expense-{{ .Values.appName }}
+        envFrom:
+        - configMapRef:
+            name: {{ .Values.appName }}
         ports:
         - containerPort: {{ .Values.port }}
