@@ -829,10 +829,10 @@ What are the specialities of Argo CD ?
     2) It offers reconissance ( Continuous Monitoring: If there are changes on the helm charts on github, it immediately updates them on your cluster )
     3) Reconsilation: If you made some changes manually on the deployment managed by argo, argocd controller immediately reverts and makes sure to apply git changes as source of truth.
 
-
 Unable To Create The App:
 ```
     Unable to create application: application spec for backend is invalid: InvalidSpecError: Unable to generate manifests in helm-charts: rpc error: code = Unknown desc = Manifest generation error (cached): `helm template . --name-template backend --namespace default --kube-version 1.31 <api versions removed> --include-crds` failed exit status 1: Error: template: expense-chart/templates/svc.yaml:6:20: executing "expense-chart/templates/svc.yaml" at <.Values.service.type>: nil pointer evaluating interface {}.type Use --debug flag to render out invalid YAML
+
 ```
 
 
