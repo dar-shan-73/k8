@@ -9,5 +9,4 @@ replicas: 1
 
 env: {} 
 
-schemaLoader:
-  enabled: false 
+schemaLoaderEnabled: false 

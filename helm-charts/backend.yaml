@@ -14,5 +14,4 @@ env:
    login_password: ExpenseApp@1
    schema_file: /app/schema/backend.sql
 
-schemaLoader:
-  enabled: true
+schemaLoaderEnabled: true 
