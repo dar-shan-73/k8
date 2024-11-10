@@ -2,8 +2,7 @@ appName: backend
 port: 8080
 
 serviceType: ClusterIP
-service:
-  port: 8080
+servicePort: 8080
 
 replicas: 1
 
