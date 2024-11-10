@@ -13,5 +13,6 @@ env:
    login_user: root 
    login_password: ExpenseApp@1
    schema_file: /app/schema/backend.sql
+   bu: expense
 
 schemaLoaderEnabled: true 
