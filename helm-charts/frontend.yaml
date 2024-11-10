@@ -7,7 +7,7 @@ service:
 
 replicas: 1
 
-env: {}     # emptyMap
+env: {} 
 
 schemaLoader:
   enabled: false 
