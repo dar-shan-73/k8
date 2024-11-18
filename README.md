@@ -835,11 +835,10 @@ Unable To Create The App:
 
 ```
 
+### Installing helm chart
 
-
-
-
-
-
-Backlog:
-1) MySQL should be on AWS Managed Service RDS
+```
+    helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+    helm upgrade -i ngx-ingres ingress-nginx/ingress-nginx -f ingress.yaml
+                    ( chart )   ( path in the repo )           ( values of your choice )
+```
