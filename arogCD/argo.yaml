@@ -22861,11 +22861,11 @@ metadata:
   name: argocd
   namespace: argocd
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: argocd-dev.cloudapps.today 
+    external-dns.alpha.kubernetes.io/hostname: argocd.cloudapps.today 
 spec:
   ingressClassName: nginx
   rules:
-    - host: argocd-dev.cloudapps.today 
+    - host: argocd.cloudapps.today 
       http:
         paths:
           - pathType: Prefix
