@@ -842,3 +842,8 @@ Unable To Create The App:
     helm upgrade -i ngx-ingres ingress-nginx/ingress-nginx -f ingress.yaml
                     ( chart )   ( path in the repo )           ( values of your choice )
 ```
+
+# How to enter in to a pod's container name of your choice ?
+```
+    $ kc exec -it frontend-65d67f7544-qnq4v -c config-init-from-vault -- bash
+```
