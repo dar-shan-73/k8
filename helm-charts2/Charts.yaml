@@ -1,0 +1,4 @@
+apiVersion: v2
+name: sample-chart
+description: A Helm chart for k8
+version: 0.1.0
